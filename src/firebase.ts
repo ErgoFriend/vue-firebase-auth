@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 import "firebase/auth";
 import store from "@/store";
+import useUser from "@/store";
 
 const config = {
   apiKey: "AIzaSyC65X-Nz7uVsrPR1x6rI2tx_Mjdny6pAl8",
@@ -13,24 +14,7 @@ const config = {
 }
 
 export default {
-  init() {
-    console.log('Firebase init')
-    firebase.initializeApp(config);
-    firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-  },
-  onAuth() {
-    console.log('Firebase onAuth')
-    firebase.auth().onAuthStateChanged(user => {
-      console.log('on chenged user', user?.displayName)
-      user && store.updateUser(user)
-      !user && store.deleteUser()
 
-    });
-    firebase.auth().currentUser?.reload().then(() => {
-      const refreshUser = firebase.auth().currentUser;
-      console.log({refreshUser})
-    })
-  },
   login() {
     console.log('Firebase login')
     const provider = new firebase.auth.GoogleAuthProvider();
@@ -41,7 +25,8 @@ export default {
     firebase.auth().signOut()
   },
   updateDisplayName: (name: string) => {
-  firebase.auth().currentUser?.updateProfile({
+    const {user} = useUser()
+    user.value?.updateProfile({
       displayName: name
     })
   }

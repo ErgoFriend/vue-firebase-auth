@@ -27,14 +27,20 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <button @click="aaa">aaa</button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
+import firebase from 'firebase'
 
 export default defineComponent({
   name: 'HelloWorld',
+  setup(){
+    const aaa = () => console.log(firebase.auth().currentUser?.displayName)
+    return { aaa }
+  }
 });
 </script>
 

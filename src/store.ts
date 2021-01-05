@@ -1,33 +1,18 @@
 import firebase from 'firebase'
-import { InjectionKey, reactive, readonly } from 'vue'
+import { InjectionKey, reactive, readonly, toRefs } from 'vue'
 
-interface Store {
-  state: {
-    readonly user: firebase.UserInfo;
-  };
-  updateUser: (user: firebase.UserInfo) => void;
-  deleteUser: () => void;
-}
-const user: firebase.UserInfo = {
-    displayName: null,
-    email: null,
-    phoneNumber: null,
-    photoURL: null,
-    providerId: '',
-    uid: ''
-  }
 
-const state = reactive({user})
 
-const updateUser = (user: firebase.UserInfo) =>
-  state.user = user 
+const useUser = () => {
+  const state = reactive({ user: firebase.auth().currentUser });
+  const setUser = (user: firebase.User | null) => state.user = user
 
-const deleteUser = () => state.user = user
+  firebase.auth().onAuthStateChanged(() => {
+    console.log('onAuthChanged', firebase.auth().currentUser?.displayName)
+    setUser(firebase.auth().currentUser)
+  });
 
-export default {
-  state: readonly(state),
-  updateUser,
-  deleteUser
+  return { ...toRefs(state), setUser }
 }
 
-export const key: InjectionKey<Store> = Symbol('key')
+export default useUser

@@ -1,7 +1,7 @@
 <template>
-    <div class="user" v-if="store.state.user.uid">
-      <img class="photoURL" :src="store.state.user.photoURL" alt="">
-      <h3 class="displayName">{{ store.state.user.displayName }}</h3>
+    <div class="user" v-if="user">
+      <img class="photoURL" :src="user.photoURL" alt="">
+      <h3 class="displayName">{{ user.displayName }}</h3>
       <button
         type="button"
         class="button is-small is-info is-outlined"
@@ -16,8 +16,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from 'vue';
-import { key } from '@/store'
+import { defineComponent, inject, watchEffect } from 'vue';
+import useUser from '@/store'
 import LoginButton from "@/components/LoginButton.vue";
 import Firebase from '@/firebase'
 
@@ -27,13 +27,10 @@ export default defineComponent({
     LoginButton,
   },
   setup () {
-    const store = inject(key)
-    if (!store) {
-      throw new Error('inject store')
-    }
-      console.log(store.state.user)
+    const { user } = useUser()
+    watchEffect(() => console.log('watchEffect', user))
     return {
-      store,
+      user: user.value,
       Firebase
     }
   }

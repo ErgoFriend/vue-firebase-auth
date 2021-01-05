@@ -9,18 +9,13 @@ import {
   provide
 } from "vue";
 import Header from "@/components/Header.vue";
-import Firebase from "@/firebase";
-import store, { key } from "@/store";
+import firebase from "firebase";
+import useUser from "@/store";
 
 export default defineComponent({
   name: "App",
   components: {
     Header,
-  },
-  setup() {
-    provide(key, store);
-    Firebase.onAuth();
-    return { store };
   },
 });
 </script>
