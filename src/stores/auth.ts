@@ -17,13 +17,11 @@ const authStore = () => {
     firebase.auth().signInWithPopup(provider)
   }
   const signout = () => firebase.auth().signOut()
-  const _update = (input: { displayName?: string; photoURL?: string }) => {
+  const updateUser = (input: { displayName?: string; photoURL?: string }) => {
     firebase.auth().currentUser?.updateProfile(input)
       .then(() => setUser(firebase.auth().currentUser)
     )
   }
-  const updateDisplayName = (displayName: string) => _update({ displayName })
-  const updatePhotoURL = (photoURL: string) => _update({ photoURL })
 
   firebase.auth().onAuthStateChanged((user) => setUser(user))
 
@@ -32,8 +30,7 @@ const authStore = () => {
     setUser,
     signin,
     signout,
-    updateDisplayName,
-    updatePhotoURL
+    updateUser,
   };
 }
 

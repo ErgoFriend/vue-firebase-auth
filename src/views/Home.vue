@@ -11,8 +11,8 @@
     <ul>
       <li><a href="https://github.com/ErgoFriend/vue-firebase-authl" target="_blank" rel="noopener">GitHub Repo</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">Zenn Article</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">Qiita Article(old verstion)</a></li>
     </ul>
+    <br>
     <p>Copyright © 2021 <a href="https://kasu.dev">kasu.dev</a> All Rights Reserved.</p>
   </div>
 </template>

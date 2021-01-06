@@ -37,11 +37,11 @@ export default defineComponent({
 
 <style scoped>
 .user {
+  margin-left: auto;
   height: 50px;
-  float: right;
   display: inline-flex;
-  justify-content: flex-end;
   align-items: center;
+  flex-wrap: wrap;
 }
 .displayName,
 button {
