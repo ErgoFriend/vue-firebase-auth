@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <h1>Hello, {{ state.displayName ?? guest }}</h1>
+    <h1>Hello, {{ state.isLoggedin ? state.displayName : guest }}</h1>
     <p>
       This is a example of an article.
     </p>
@@ -13,7 +13,7 @@
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">Zenn Article</a></li>
       <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-eslint" target="_blank" rel="noopener">Qiita Article(old verstion)</a></li>
     </ul>
-    <br />
+    <p>Copyright © 2021 <a href="https://kasu.dev">kasu.dev</a> All Rights Reserved.</p>
   </div>
 </template>
 
