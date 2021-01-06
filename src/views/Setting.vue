@@ -3,28 +3,24 @@
     <h1>Setting</h1>
     <label for="displayName">displayName</label>
     <input type="text" v-model="displayName" />
-    <button :disabled="!canModify" @click="update()">Update</button>
+    <button @click="update()">Update</button>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from 'vue';
-import useUser from '@/store';
-import Firebase from '@/firebase'
+import { defineComponent, ref, watchEffect } from "vue";
+import { useAuthStore } from "@/stores/auth";
 export default defineComponent({
-  name: 'Setting',
+  name: "Setting",
   setup() {
-    const {user} = useUser()
-    
-    const canModify = ref(!!user.value?.displayName)
-    const displayName = ref<string>(user.value?.displayName ?? '')
-    const update = () => {
-      console.log('update to', displayName.value)
-      displayName.value && Firebase.updateDisplayName(displayName.value)
-    }
+    const { state, updateDisplayName } = useAuthStore();
+    const displayName = ref('');
+    const update = () => updateDisplayName(displayName.value);
 
-    return { canModify, displayName, update, Firebase }
-  }
+    watchEffect(() => (displayName.value = state.displayName));
+
+    return { displayName, update };
+  },
 });
 </script>
 

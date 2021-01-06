@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
+import firebase from "firebase/app"
+import 'firebase/auth'
 import App from '@/App.vue'
 import router from '@/router'
-import firebase from "firebase"
+import authStore, { authStoreKey } from '@/stores/auth'
 
 const config = {
   apiKey: "AIzaSyC65X-Nz7uVsrPR1x6rI2tx_Mjdny6pAl8",
@@ -13,7 +15,10 @@ const config = {
   measurementId: "G-EVD8ZEB5M3"
 }
 
-  firebase.initializeApp(config);
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+firebase.initializeApp(config);
+firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
 
-createApp(App).use(router).mount('#app')
+const app = createApp(App)
+app.use(router)
+app.provide(authStoreKey, authStore())
+app.mount('#app')

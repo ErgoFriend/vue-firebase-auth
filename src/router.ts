@@ -1,13 +1,13 @@
 import { createWebHistory, createRouter } from "vue-router";
 
-import HelloWorld from "@/views/HelloWorld.vue";
+import Home from "@/views/Home.vue";
 import Setting from "@/views/Setting.vue";
 import NotFound from "@/views/NotFound.vue";
 const routes = [
-   {
+  {
     path: "/",
     name: "Home",
-    component: HelloWorld,
+    component: Home,
   },
   {
     path: "/setting",
@@ -15,9 +15,9 @@ const routes = [
     component: Setting,
   },
   {
-  path: "/:catchAll(.*)",
-  component: NotFound,
-},
+    path: "/:catchAll(.*)",
+    component: NotFound,
+  },
 ];
 
 const router = createRouter({

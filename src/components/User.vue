@@ -1,39 +1,37 @@
 <template>
-    <div class="user" v-if="user">
-      <img class="photoURL" :src="user.photoURL" alt="">
-      <h3 class="displayName">{{ user.displayName }}</h3>
-      <button
-        type="button"
-        class="button is-small is-info is-outlined"
-        @click="Firebase.logout()"
-      >
-        Sign out
-      </button>
-    </div>
-    <div class="user" v-else>
-      <LoginButton />
-    </div>
+  <div class="user" v-if="state.isLoggedin">
+    <img class="photoURL" :src="state.photoURL" alt="" />
+    <h3 class="displayName">{{ state.displayName }}</h3>
+    <button
+      type="button"
+      class="button is-small is-info is-outlined"
+      @click="signout()"
+    >
+      Sign out
+    </button>
+  </div>
+  <div class="user" v-else>
+    <LoginButton />
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, watchEffect } from 'vue';
-import useUser from '@/store'
+import { defineComponent } from "vue";
+import { useAuthStore } from "@/stores/auth";
 import LoginButton from "@/components/LoginButton.vue";
-import Firebase from '@/firebase'
 
 export default defineComponent({
   name: "User",
   components: {
     LoginButton,
   },
-  setup () {
-    const { user } = useUser()
-    watchEffect(() => console.log('watchEffect', user))
+  setup() {
+    const { signout, state } = useAuthStore();
     return {
-      user: user.value,
-      Firebase
-    }
-  }
+      state,
+      signout,
+    };
+  },
 });
 </script>
 
@@ -45,11 +43,12 @@ export default defineComponent({
   justify-content: flex-end;
   align-items: center;
 }
-.displayName, button {
-  white-space: nowrap
+.displayName,
+button {
+  white-space: nowrap;
 }
 .displayName {
-  margin: 0 20px 0 10px
+  margin: 0 20px 0 10px;
 }
 button {
   font-weight: 600;

@@ -4,13 +4,8 @@
 </template>
 
 <script lang="ts">
-import {
-  defineComponent,
-  provide
-} from "vue";
+import { defineComponent } from "vue";
 import Header from "@/components/Header.vue";
-import firebase from "firebase";
-import useUser from "@/store";
 
 export default defineComponent({
   name: "App",
@@ -21,5 +16,5 @@ export default defineComponent({
 </script>
 
 <style>
-@import "https://cdn.jsdelivr.net/npm/water.css@2/out/water.css";
+@import "https://cdn.jsdelivr.net/npm/water.css@2/out/dark.min.css";
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <button type="button" class="google-button" @click="Firebase.login()">
+  <button type="button" class="google-button" @click="signin()">
     <span class="google-button__icon">
       <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
         <path
@@ -29,13 +29,13 @@
 
 <script lang='ts'>
 import { defineComponent } from "vue";
-import Firebase from '@/firebase'
-
+import { useAuthStore } from "@/stores/auth";
 export default defineComponent({
   name: "LoginButton",
   setup() {
-    return { Firebase }
-  }
+    const { signin } = useAuthStore();
+    return { signin };
+  },
 });
 </script>
 
