@@ -9,8 +9,8 @@
     </p>
     <h3>Related links</h3>
     <ul>
-      <li><a href="https://github.com/ErgoFriend/vue-firebase-authl" target="_blank" rel="noopener">GitHub Repo</a></li>
-      <li><a href="https://github.com/vuejs/vue-cli/tree/dev/packages/%40vue/cli-plugin-typescript" target="_blank" rel="noopener">Zenn Article</a></li>
+      <li><a href="https://github.com/ErgoFriend/vue-firebase-auth" target="_blank" rel="noopener">GitHub Repo</a></li>
+      <li><a href="https://zenn.dev/kasu/articles/70a77bd2d1ee01" target="_blank" rel="noopener">Zenn Article</a></li>
     </ul>
     <br>
     <p>Copyright © 2021 <a href="https://kasu.dev">kasu.dev</a> All Rights Reserved.</p>
@@ -31,7 +31,6 @@ export default defineComponent({
 });
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
   margin: 40px 0 0;

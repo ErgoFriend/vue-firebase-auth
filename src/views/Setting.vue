@@ -16,6 +16,7 @@
 <script lang="ts">
 import { defineComponent, ref, watchEffect } from "vue";
 import { useAuthStore } from "@/stores/auth";
+
 export default defineComponent({
   name: "Setting",
   setup() {
